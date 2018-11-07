@@ -100,8 +100,8 @@
     },
     "appium-chromedriver": {
       "version": "4.5.0",
-      "from": "appium-chromedriver@>=4.0.0 <5.0.0",
-      "resolved": "https://registry.npmjs.org/appium-chromedriver/-/appium-chromedriver-4.5.0.tgz"
+      "from": "https://github.com/apptestai/appium-chromedriver.git",
+      "resolved": "https://github.com/apptestai/appium-chromedriver/releases/download/apptestai_v4.5.0/appium-chromedriver-4.5.0.tgz"
     },
     "appium-espresso-driver": {
       "version": "1.0.0-beta.16",
@@ -292,13 +292,13 @@
     },
     "appium-uiautomator2-driver": {
       "version": "1.19.0",
-      "from": "appium-uiautomator2-driver@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/appium-uiautomator2-driver/-/appium-uiautomator2-driver-1.19.0.tgz"
+      "from": "https://github.com/apptestai/appium-uiautomator2-driver.git",
+      "resolved": "https://github.com/apptestai/appium-uiautomator2-driver/releases/download/apptestai_v1.19.0/appium-uiautomator2-driver-1.19.0.tgz"
     },
     "appium-uiautomator2-server": {
       "version": "1.18.0",
-      "from": "appium-uiautomator2-server@>=1.9.2 <2.0.0",
-      "resolved": "https://registry.npmjs.org/appium-uiautomator2-server/-/appium-uiautomator2-server-1.18.0.tgz"
+      "from": "https://github.com/apptestai/appium-uiautomator2-server.git",
+      "resolved": "https://github.com/apptestai/appium-uiautomator2-server/releases/download/apptestai_v1.18.0/appium-uiautomator2-server-1.18.0.tgz"
     },
     "appium-unlock": {
       "version": "2.0.0",
@@ -324,8 +324,8 @@
     },
     "appium-xcuitest-driver": {
       "version": "2.94.2",
-      "from": "appium-xcuitest-driver@>=2.0.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/appium-xcuitest-driver/-/appium-xcuitest-driver-2.94.2.tgz"
+      "from": "https://github.com/apptestai/appium-xcuitest-driver.git",
+      "resolved": "https://github.com/apptestai/appium-xcuitest-driver/releases/download/apptestai_v2.94.2/appium-xcuitest-driver-2.94.2.tgz"
     },
     "appium-youiengine-driver": {
       "version": "1.0.20",
