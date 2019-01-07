@@ -68,8 +68,8 @@
     },
     "appium-adb": {
       "version": "6.19.0",
-      "from": "appium-adb@>=6.19.0 <7.0.0",
-      "resolved": "https://registry.npmjs.org/appium-adb/-/appium-adb-6.19.0.tgz"
+	  "from": "https://github.com/apptestai/appium-adb.git",
+	  "resolved": "https://github.com/apptestai/appium-adb/releases/download/apptestai_v6.19.0/appium-adb-6.19.0.tgz"
     },
     "appium-android-bootstrap": {
       "version": "2.13.1",
