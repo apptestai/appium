@@ -1464,7 +1464,6 @@
     "appium-adb": {
       "version": "7.7.1",
       "resolved": "https://github.com/apptestai/appium-adb/releases/download/apptestai_v7.7.1/appium-adb-7.7.1.tgz",
-      "integrity": "sha512-qhxWkIBmOQ1l3FrJHEH4vEDJeTy9n8R7tQXxgKhMiRXlfGfi0lU5UJT1hjpWVuntKuAWhn5jTVojhg9nN6cywA==",
       "requires": {
         "@babel/runtime": "^7.0.0",
         "appium-support": "^2.24.0",
@@ -1541,7 +1540,6 @@
     "appium-chromedriver": {
       "version": "4.11.0",
       "resolved": "https://github.com/apptestai/appium-chromedriver/releases/download/apptestai_v4.11.0/appium-chromedriver-4.11.0.tgz",
-      "integrity": "sha512-kTkTaZVJ7osSqjYBKSMCBC+L9aF7RlgWOC+ttU1vH91oRQ9TAlBYjRUMnBUIMKgDcEYo8KR8n7ZpNEUs2MwG8g==",
       "requires": {
         "@babel/runtime": "^7.0.0",
         "appium-base-driver": "^3.0.0",
@@ -2476,7 +2474,6 @@
     "appium-uiautomator2-driver": {
       "version": "1.33.1",
       "resolved": "https://github.com/apptestai/appium-uiautomator2-driver/releases/download/apptestai_v1.33.1/appium-uiautomator2-driver-1.33.1.tgz",
-      "integrity": "sha512-ifqNcTznEnfu8l7otEpvWIZno9InGLF8C/wFQG5Er42vFU8OkiJh3VPx0U7/cha25/UfngKeMGhQ9PJsZrY78A==",
       "requires": {
         "@babel/runtime": "^7.0.0",
         "appium-adb": "^7.4.0",
@@ -2497,8 +2494,7 @@
     },
     "appium-uiautomator2-server": {
       "version": "3.5.1",
-      "resolved": "https://github.com/apptestai/appium-uiautomator2-server/releases/download/apptestai_v3.5.1/appium-uiautomator2-server-3.5.1.tgz",
-      "integrity": "sha512-GqTSkoEiqZSQUV8bRSkpohmoA3pLWtKgy4Ivv6b4fHQmfdeiVgITn8XqcTdMGfbIGLD8TtGBbZTdxJyvj/0/Cw=="
+      "resolved": "https://github.com/apptestai/appium-uiautomator2-server/releases/download/apptestai_v3.5.1/appium-uiautomator2-server-3.5.1.tgz"
     },
     "appium-windows-driver": {
       "version": "1.5.1",
@@ -2602,7 +2598,6 @@
     "appium-xcuitest-driver": {
       "version": "2.113.2",
       "resolved": "https://github.com/apptestai/appium-xcuitest-driver/releases/download/apptestai_v2.113.2/appium-xcuitest-driver-2.113.2.tgz",
-      "integrity": "sha512-dhid34cx99AG61O69gbIgvW51RUKtd9uQkKziQe0/XGApAozjwlxgMJo/pjshpuz2rXCMz3ilRcrLnscT36qmQ==",
       "requires": {
         "@babel/runtime": "^7.0.0",
         "appium-base-driver": "^3.0.0",
