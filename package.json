@@ -77,7 +77,7 @@
   },
   "scripts": {
     "clean": "rm -rf node_modules && rm -f package-lock.json && npm install",
-    "prepublish": "gulp prepublish",
+    "prepublish": "echo 'skip Pre-publish...' && exit 0",
     "prepublishOnly": "npm run prune-shrinkwrap && gulp fixShrinkwrap",
     "postpublish": "npm run restore-shrinkwrap",
     "prune-shrinkwrap": "!(test -e npm-shrinkwrap.json) || (npm ci --production --ignore-scripts && npm shrinkwrap && npm install --only=dev --no-shrinkwrap)",
