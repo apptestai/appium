@@ -13,7 +13,7 @@ driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 ```python
 # Python
-self.driver.implicitly_wait(5000)
+self.driver.implicitly_wait(5) # waits 5 seconds
 
 ```
 
@@ -72,7 +72,7 @@ If this command is never sent, the driver should default to an implicit wait of 
 |  | [UIAutomation](/docs/en/drivers/ios-uiautomation.md) | 8.0 to 9.3 | All | All |
 | Android | [Espresso](/docs/en/drivers/android-espresso.md) | ?+ | 1.9.0+ | All |
 |  | [UiAutomator2](/docs/en/drivers/android-uiautomator2.md) | ?+ | 1.6.0+ | All |
-|  | [UiAutomator](/docs/en/drivers/android-uiautomator.md) | 4.2+ | All | All |
+|  | [UiAutomator](/docs/en/drivers/android-uiautomator.md) | 4.3+ | All | All |
 | Mac | [Mac](/docs/en/drivers/mac.md) | ?+ | 1.6.4+ | All |
 | Windows | [Windows](/docs/en/drivers/windows.md) | 10+ | 1.6.0+ | All |
 

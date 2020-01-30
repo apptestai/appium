@@ -15,6 +15,8 @@ Another example of a use-case for settings would be telling appium to ignore ele
 
 Settings are implemented via the following API endpoints:
 
+### [Update Device Settings](/docs/en/commands/session/settings/update-settings.md)
+
 **POST** /session/:sessionId/appium/settings
 
 >Expects a JSON hash of settings, where keys correspond to setting names, and values to the value of the setting.
@@ -26,6 +28,8 @@ Settings are implemented via the following API endpoints:
 }
 ```
 
+### [Retrieve Device Settings](/docs/en/commands/session/settings/get-settings.md)
+
 **GET** /session/:sessionId/appium/settings
 
 >Returns a JSON hash of all the currently specified settings.
@@ -34,8 +38,6 @@ Settings are implemented via the following API endpoints:
   ignoreUnimportantViews : true
 }
 ```
-
-Note that the actual commands you would use in your test script differ based on the language; see the specific Appium client documention for more information.
 
 ## General Supported Settings
 
@@ -66,6 +68,9 @@ Note that the actual commands you would use in your test script differ based on 
 |`normalizeTagNames`| Translate all class names used as XML tags to the limited set of ASCII characters supported by Apache Harmony library. Used by default in Android to avoid possible XML parsing exceptions caused by XPath lookup. The translation is based on [junidecode](https://github.com/gcardone/junidecode). This prevents [this error case](https://github.com/appium/appium/issues/11854). Defaults to `false`. | `false` or `true` |
 |`shutdownOnPowerDisconnect`| Shutdown the server through the broadcast receiver on [ACTION_POWER_DISCONNECTED](https://developer.android.com/reference/android/content/Intent.html#ACTION_POWER_DISCONNECTED). Defaults to `true` | `false` or `true` |
 |`trackScrollEvents`| Turn on or off the tracking of scroll events as they happen. If `true`, a field, `lastScrollData`, is added to the results of `getSession`, which can then be used to check on scroll progress. Turning this feature off significantly increases touch action performance. Defaults to `true` | `true` or `false` |
+|`wakeLockTimeout`| Allows to change the timeout of the acquired wake lock. The lock is acquired on server startup and is held until the UIAutomator2 server is killed or the timeout expires. Setting this value to zero or a negative number will release the lock immediately if it is held. Defaults to '24 * 60 * 60 * 1000' milliseconds. | e.g. `0`, `60000` (1 min) |
+|`enableMultiWindows`| If enabled then the page source and xpath lookup will include all windows available to the accessibility rather than the active one only. It might help to resolve finding elements on windows like `android.widget.PopupWindow`. Defaults to `false` and returns an active root window. Read [appium-uiautomator2-server#301](https://github.com/appium/appium-uiautomator2-server/pull/301) for mroe details. |`true` or `false` |
+
 
 ### iOS Only
 
@@ -80,3 +85,11 @@ Note that the actual commands you would use in your test script differ based on 
 |`mjpegScalingFactor`| Changes the scale of screenshots. Defaults to `100`, no scaling. Integer between `1` and `100` are available. | e.g. `1`, `50`, `100` |1.12.0+|
 |`keyboardAutocorrection`| Changes the 'Auto-Correction' preference in _Keyboards_ setting. Defaults to `false` when WDA starts as xctest. | `true`, `false` |1.14.0+|
 |`keyboardPrediction`| Changes the 'Predictive' preference in _Keyboards_ setting. Defaults to `false` when WDA starts as xctest. | `true`, `false` |1.14.0+|
+|`snapshotTimeout` | Changes the accessibility snapshots resolution timeout. _Snapshots_ are mainly used for page source generation, XML lookup and attributes retrieval. It might be necessary to increase this value if the actual page source is very large and contains hundreds of UI elements. Defaults to 15 seconds. | e.g. `10`, `100` (seconds) |1.15.0+|
+|`useFirstMatch` | Enabling this setting makes single element lookups faster, but there is the known [problem](https://github.com/appium/appium/issues/10101) related to nested elements lookup. Defaults to `false`. |`true`, `false` |1.15.0+|
+|`reduceMotion`| Changes the 'reduce motion' preference of accessibility feature. | `true`, `false` |1.15.0+|
+|`defaultActiveApplication`| Sets the hint for active application selection. This helps WebDriverAgent to select the current application if there are multiple items in the active applications list and the desired one is also one of them. The setting is particularly useful for split-screen apps automation. Defaults to `auto`, which makes WebDriverAgent to select the application whose element is located at `screenPoint` location or a single item from the active apps list if the length of this list is equal to one. | e.g., `com.apple.Preferences` |1.15.0+|
+|`activeAppDetectionPoint`| Defines the coordinates of the current screen point. WebDriverAgent uses this point to detect the active application if multiple application are active on the screen. The format of this value is `x,y`, where x and y are float or integer numbers representing valid screen coordinates. Setting this value to a point outside the actual screen coordinates might corrupt WebDriverAgent functionality. By default the screen point coordinates equal to 20% of the minimum screen dimension each, e.g. `MIN(w, h) * 0.2, MIN(w, h) * 0.2` | e.g. `100,300` |1.15.0+|
+| `includeNonModalElements` | Whether returns all of elements including no modal dialogs on iOS 13+. It fixes [cannot find elements on nested modal presentations](https://github.com/appium/appium/issues/13227), but it might make visibility attributes unreliable. You could also enable `shouldUseTestManagerForVisibilityDetection` setting (defaults to `false`) or `simpleIsVisibleCheck` capability to improve the visibility detection. This issue may happen between iOS 13.0 to 13.2 (and Xcode 11.0 to 11.2). The query issued in `includeNonModalElements` returns `nil` with newer iOS/Xcode versions and Appium/WDA return proper elements three without this setting being used. Defaults to `false`. | `true`, `false` |1.15.0+|
+| `acceptAlertButtonSelector` | Allows to customize accept alert button selector. It helps you to handle an arbitrary element as accept button in `accept alert` command. The selector should be a valid [class chain](https://github.com/facebookarchive/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules) expression, where the search root is the alert element itself. The default button location algorithm is used if the provided selector is wrong or does not match any element. | e.g., <code>**/XCUIElementTypeButton[\`label CONTAINS[c] 'accept'\`]</code> | 1.16.0+ |
+| `dismissAlertButtonSelector` | Allows to customize dismiss alert button selector. It helps you to handle an arbitrary element as dismiss button in `dismiss alert` command. The selector should be a valid [class chain](https://github.com/facebookarchive/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules) expression, where the search root is the alert element itself. The default button location algorithm is used if the provided selector is wrong or does not match any element. | e.g., <code>**/XCUIElementTypeButton[\`label CONTAINS[c] 'dismiss'\`]</code> | 1.16.0+ |

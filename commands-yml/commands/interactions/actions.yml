@@ -31,7 +31,7 @@ example_usage:
     |
       element = driver.find_element_by_accessibility_id("elId")
       actions = ActionChains(driver)
-      actions.move_to_element(el)
+      actions.move_to_element(element)
       actions.click(hidden_submenu)
       actions.perform()
   javascript_wd:
@@ -179,7 +179,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /wd/hub/session/:sessionId/actions
+  url: /session/:sessionId/actions
   method: POST
   url_parameters:
     - name: session_id

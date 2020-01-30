@@ -34,7 +34,8 @@ example_usage:
       // Supports only `mobile: queryAppState` for iOS, XCUITest
   csharp:
     |
-      // Supports only `mobile: queryAppState` for iOS, XCUITest
+      driver.activateApp('com.apple.Preferences');
+      driver.activateApp('io.appium.android.apis');
 
 client_docs:
   java: "https://appium.github.io/java-client/io/appium/java_client/InteractsWithApps.html#activateApp-java.lang.String-"
@@ -71,7 +72,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /wd/hub/session/:session_id/appium/device/activate_app
+  url: /session/:session_id/appium/device/activate_app
   method: POST
   url_parameters:
     - name: session_id

@@ -13,7 +13,7 @@ desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simu
 desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
 desiredCapabilities.setCapability(MobileCapabilityType.APP, "/path/to/ios/app.zip");
 
-URL url = new URL("http://127.0.0.1:4723/wd/hub");
+URL url = new URL("http://127.0.0.1:4723");
 
 IOSDriver driver = new IOSDriver(url, desiredCapabilities);
 String sessionId = driver.getSessionId().toString();
@@ -22,14 +22,14 @@ String sessionId = driver.getSessionId().toString();
 
 ```python
 # Python
-desired_caps = desired_caps = {
+desired_caps = {
   'platformName': 'Android',
   'platformVersion': '7.0',
   'deviceName': 'Android Emulator',
   'automationName': 'UiAutomator2',
   'app': PATH('/path/to/app')
 }
-self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+self.driver = webdriver.Remote('http://127.0.0.1:4723', desired_caps)
 
 ```
 
@@ -89,14 +89,14 @@ Appium::Driver.new(desired_caps).start_driver
 
 ```csharp
 // C#
-DesiredCapabilities capabilities = new DesiredCapabilities();
-capabilities.SetCapability(MobileCapabilityType.PlatformName, "Android");
-capabilities.SetCapability(MobileCapabilityType.PlatformVersion, "7.1.1");
-capabilities.SetCapability(MobileCapabilityType.DeviceName, "Android Device");
-capabilities.SetCapability("appPackage", "com.instagram.android");
-capabilities.SetCapability("appActivity", "com.instagram.android.activity.MainTabActivity");
+AppiumOptions capabilities = new AppiumOptions();
+appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
+appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "7.1.1");
+appiumOptions.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Android Device");
+appiumOptions.AddAdditionalCapability("appPackage", "com.instagram.android");
+appiumOptions.AddAdditionalCapability("appActivity", "com.instagram.android.activity.MainTabActivity");
 
-AndroidDriver<AndroidElement> driver = new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723/wd/hub/"), capabilities);
+AndroidDriver<AndroidElement> driver = new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723/"), appiumOptions);
 
 ```
 
@@ -121,7 +121,7 @@ The server should attempt to create a session that most closely matches the desi
 |  | [UIAutomation](/docs/en/drivers/ios-uiautomation.md) | 8.0 to 9.3 | All | All |
 | Android | [Espresso](/docs/en/drivers/android-espresso.md) | ?+ | 1.9.0+ | All |
 |  | [UiAutomator2](/docs/en/drivers/android-uiautomator2.md) | ?+ | 1.6.0+ | All |
-|  | [UiAutomator](/docs/en/drivers/android-uiautomator.md) | 4.2+ | All | All |
+|  | [UiAutomator](/docs/en/drivers/android-uiautomator.md) | 4.3+ | All | All |
 | Mac | [Mac](/docs/en/drivers/mac.md) | ?+ | 1.6.4+ | All |
 | Windows | [Windows](/docs/en/drivers/windows.md) | 10+ | 1.6.0+ | All |
 
