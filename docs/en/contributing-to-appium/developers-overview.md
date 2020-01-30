@@ -166,6 +166,13 @@ into master, then cherry-pick individual patches to the release branch (perhaps
 even multiple release branches). Then we again publish from those branches with
 the updated patch version (`1.5.1` or `2.0.1` for example).
 
+Every release should have at least one release candidate prior to the GA release.
+For example, if we're releasing 1.20.0 then we should checkout branch `1.12` and
+then first release `1.12.0-rc.0`. We keep releasing new release candidates until
+we're happy with it and then "upgrade" to GA. The GA release should have identical
+code and shrinkwrap as the most recent release candidate. The only difference should
+be the version, which is reflected in package.json and npm-shrinkwrap.json
+
 **A note about `npm shrinkwrap`:** We use [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap)
 in order to lock dependencies on release. Without it, any development on dependent
 packages will be reflected when Appium is installed, which may lead to issues. Since
@@ -180,22 +187,12 @@ converted into the `npm-shrinkwrap.json` file.
 1. Determine whether we have a `patch` (bugfix), `minor` (feature), or `major` (breaking) release according to the principles of SemVer.
 1. Update `package.json` with the appropriate new version.
 1. Update the CHANGELOG/README with appropriate changes and submit for review as a PR, along with shrinkwrap and `package.json` changes. Wait for it to be merged, then pull it into the release branch.
-1. `rm -rf node_modules && npm install --production` to get just the production dependencies.
-1. `npm shrinkwrap` to write the new NPM shrinkwrap JSON file, and commit this file.
-1. Create a tag of the form `v<version>` on the release branch (usually a minor branch like `1.5` or `1.4`), with: `git tag -a v<version>`, e.g., `git tag -a v1.5.0`. This is not necessary for beta versions.
+1. Run `npm shrinkwrap` to generate the `npm-shrinkwrap.json`
+1. Create a tag of the form `v<version>` on the release branch (usually a minor branch like `1.5` or `1.4`), with: `git tag -a v<version>`, e.g., `git tag -a v1.5.0`, `git tag -a v1.5.0-rc.1`. This is not necessary for beta versions.
 1. Push the tag to upstream: `git push --tags <remote> <branch>`
-1. Install dev dependencies (or at least `gulp` and `appium-gulp-plugins`), and undo the changes to the NPM shrinkwrap JSON file (e.g., `git checkout -- npm-shrinkwrap.json`).
-1. Run `npm publish` (with `--tag beta` if this isn't an official release).
+1. Run `npm publish` (with `--tag rc` if this isn't a GA release).
 1. Remove the NPM shrinkwrap JSON file from Git and push the changes
-1. Update the site docs or put in an [issue](https://github.com/appium/appium/issues) to have the site docs updated
-    * From Appium repo, run `npm run generate-docs` and make a pull request if there are any newly generated docs.
-    * When the above PR is merged, clone the [appium.io](https://github.com/appium/appium.io) repo (if you haven't done so already)
-    * Check out and pull the latest `gh-pages` branch
-    * Follow the setup guide in the README.md
-    * Generate the docs by running `npm run build:docs`
-    * Test by running `npm run serve` and navigating to https://localhost:4000/
-    * Make a new branch
-    * Commit and push changes and make a pull request to have changes merged into `gh-pages`
+1. Update the site docs by going to https://github.com/appium/appium.io/pulls and merging the latest pull request that was opened by the Triager bot. Close any other pull requests opened by Triager bot.
 1. Create a new release on GitHub: go to `https://github.com/appium/appium/releases/tag/v<VERSION>` and hit "Edit Tag". Make the release name `<VERSION>` (e.g., `2.0.5`), then paste in the changelog (but not the changelog header for this version). If it's a beta release, mark as pre-release.
 1. Create a new post on discuss.appium.io announcing the release. Post it in the "News" category. Paste in the changelog and any choice comments. Pin it and unpin the previous release post.
 1. Begin process of releasing `appium-desktop`.

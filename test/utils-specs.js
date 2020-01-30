@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { parseCapsForInnerDriver, insertAppiumPrefixes } from '../lib/utils';
+import {
+  parseCapsForInnerDriver, insertAppiumPrefixes, pullSettings } from '../lib/utils';
 import { BASE_CAPS, W3C_CAPS } from './helpers';
 import _ from 'lodash';
 
@@ -32,10 +33,47 @@ describe('utils', function () {
       protocol.should.equal('W3C');
     });
     it('should include default capabilities in results', function () {
-      let {desiredCaps, processedJsonwpCapabilities, processedW3CCapabilities} = parseCapsForInnerDriver(BASE_CAPS, W3C_CAPS, {}, {foo: 'bar'});
-      desiredCaps.should.deep.equal({foo: 'bar', ...BASE_CAPS});
-      processedJsonwpCapabilities.should.deep.equal({foo: 'bar', ...BASE_CAPS});
-      processedW3CCapabilities.alwaysMatch.should.deep.equal({'appium:foo': 'bar', ...insertAppiumPrefixes(BASE_CAPS)});
+      const defaultCaps = {
+        foo: 'bar',
+        baz: 'bla',
+      };
+      const {
+        desiredCaps,
+        processedJsonwpCapabilities,
+        processedW3CCapabilities
+      } = parseCapsForInnerDriver(BASE_CAPS, W3C_CAPS, {}, defaultCaps);
+      desiredCaps.should.deep.equal({
+        ...defaultCaps,
+        ...BASE_CAPS,
+      });
+      processedJsonwpCapabilities.should.deep.equal({
+        ...defaultCaps,
+        ...BASE_CAPS
+      });
+      processedW3CCapabilities.alwaysMatch.should.deep.equal({
+        ...insertAppiumPrefixes(defaultCaps),
+        ...insertAppiumPrefixes(BASE_CAPS)
+      });
+    });
+    it('should include default capabilities into incomplete W3C caps', function () {
+      const defaultCaps = {
+        foo: 'bar',
+        baz: 'bla',
+      };
+      const {
+        desiredCaps,
+        processedJsonwpCapabilities,
+        processedW3CCapabilities
+      } = parseCapsForInnerDriver({}, {
+        alwaysMatch: {},
+      }, {}, defaultCaps);
+      desiredCaps.should.deep.equal({
+        ...defaultCaps,
+      });
+      processedJsonwpCapabilities.should.deep.equal(defaultCaps);
+      processedW3CCapabilities.alwaysMatch.should.deep.equal(
+        insertAppiumPrefixes(defaultCaps)
+      );
     });
     it('should rewrite default capabilities in results', function () {
       const baseCapsWithDefault = Object.assign({}, BASE_CAPS, {
@@ -176,6 +214,61 @@ describe('utils', function () {
         'appium:someOtherCap': 'someOtherCap',
         'appium:yetAnotherCap': 'yetAnotherCap',
       });
+    });
+  });
+
+  describe('pullSettings()', function () {
+    it('should pull settings from caps', function () {
+      const caps = {
+        platformName: 'foo',
+        browserName: 'bar',
+        'settings[settingName]': 'baz',
+        'settings[settingName2]': 'baz2',
+      };
+      const settings = pullSettings(caps);
+      settings.should.eql({
+        settingName: 'baz',
+        settingName2: 'baz2',
+      });
+      caps.should.eql({
+        platformName: 'foo',
+        browserName: 'bar',
+      });
+    });
+    it('should pull settings dict if object values are present in caps', function () {
+      const caps = {
+        platformName: 'foo',
+        browserName: 'bar',
+        'settings[settingName]': {key: 'baz'},
+      };
+      const settings = pullSettings(caps);
+      settings.should.eql({
+        settingName: {key: 'baz'},
+      });
+      caps.should.eql({
+        platformName: 'foo',
+        browserName: 'bar',
+      });
+    });
+    it('should pull empty dict if no settings are present in caps', function () {
+      const caps = {
+        platformName: 'foo',
+        browserName: 'bar',
+        'setting[settingName]': 'baz',
+      };
+      const settings = pullSettings(caps);
+      settings.should.eql({});
+      caps.should.eql({
+        platformName: 'foo',
+        browserName: 'bar',
+        'setting[settingName]': 'baz',
+      });
+    });
+    it('should pull empty dict if caps are empty', function () {
+      const caps = {};
+      const settings = pullSettings(caps);
+      settings.should.eql({});
+      caps.should.eql({});
     });
   });
 });

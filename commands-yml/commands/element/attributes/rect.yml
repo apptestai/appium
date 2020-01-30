@@ -5,16 +5,24 @@ short_description: Gets dimensions and coordinates of an element
 example_usage:
   java:
     |
-      List<MobileElement> element = (MobileElement) driver.findElementByAccessibilityId("SomeAccessibilityID");
+      MobileElement element = (MobileElement) driver.findElementByAccessibilityId("SomeAccessibilityID");
       Rectangle rect = element.getRect();
+  python:
+    |
+      element = self.driver.find_element_by_accessibility_id('SomeAccessibilityID')
+      element.rect
   javascript_wd:
     |
       let element = await driver.elementByAccessibilityId("SomeAccessibilityID");
       let rect = await element.getRect();
   javascript_wdio:
     |
-      let rect = driver.elementIdRect("~SomeAccessibilityId");
+      let rect = driver.getElementRect("~SomeAccessibilityId");
   ruby:
+    |
+      element = find_element :accessibility_id, "SomeAccessibilityID"
+      element.rect
+  ruby_core:
     |
       element = @driver.find_element :accessibility_id, "SomeAccessibilityID"
       element.rect
@@ -29,6 +37,7 @@ client_docs:
   java: "https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebElement.html#getRect--"
   javascript_wdio: "http://webdriver.io/api/protocol/elementIdRect.html"
   ruby: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Element#rect-instance_method"
+  ruby_core: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Element#rect-instance_method"
   php: "https://github.com/appium/php-client/" # TODO PHP documentation link
   csharp: "https://github.com/appium/appium-dotnet-driver/" # TODO Dotnet documentation link
 
@@ -53,11 +62,11 @@ client_support:
   csharp: true
   javascript_wd: true
   javascript_wdio: true
-  
+
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /wd/hub/session/:session_id/elements/:element_id/rect
+  url: /session/:session_id/elements/:element_id/rect
   method: GET
   url_parameters:
     - name: session_id
@@ -74,9 +83,9 @@ endpoint:
     - name: height
       type: number
       description: Height of the bounding rectangle
-    - name: weight
+    - name: width
       type: number
       description: Width of the bounding rectangle
 # Links to specifications. Should link to at least one specification
-specifications: 
+specifications:
   w3c: https://www.w3.org/TR/webdriver/#dfn-get-element-rect

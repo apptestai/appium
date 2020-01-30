@@ -67,7 +67,7 @@ driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities)
 
 Set<String> contextNames = driver.getContextHandles();
 for (String contextName : contextNames) {
-    System.out.println(contextNames); //prints out something like NATIVE_APP \n WEBVIEW_1
+    System.out.println(contextName); //prints out something like NATIVE_APP \n WEBVIEW_1
 }
 driver.context(contextNames.toArray()[1]); // set context to WEBVIEW_1
 
@@ -82,9 +82,12 @@ driver.quit();
 ```
 
 ```ruby
-# ruby
+# ruby_lib_core
 # assuming we have a set of capabilities
-@driver = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => SERVER_URL)
+@driver = Appium::Core.for(url: SERVER_URL, desired_capabilities: capabilities).start_driver
+# ruby_lib
+# opts = { caps: capabilities, appium_lib: { custom_url: SERVER_URL }}
+# @driver = Appium::Driver.new(opts, true).start_driver
 
 # I switch to the last context because its always the webview in our case, in other cases you may need to specify a context
 # View the appium logs while running @driver.contexts to figure out which context is the one you want and find the associated ID
@@ -156,10 +159,7 @@ public function testThings()
 ### Automating hybrid Android apps
 
 Appium comes with [built-in hybrid support via Chromedriver](/docs/en/writing-running-appium/web/chromedriver.md),
-which allow the automation of any Chrome-backed Android web views. Appium also
-uses [Selendroid](http://selendroid.io/) under the hood for webview support on
-devices older than 4.4. (in which case you will need to specify
-`"automationName": "selendroid"` as a desired capability).
+which allow the automation of any Chrome-backed Android web views.
 
 There is an additional step necessary within your app build, unfortunately. As
 described in the Android [remote debugging docs](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews)
@@ -187,9 +187,10 @@ and started an Appium session, follow the generalized instructions above.
 
 #### Execution against an iOS real device
 
-When executing against an iOS real device Appium is unable to access the web view
+When executing against an iOS real device, Appium is unable to access the web view
 directly. Therefore the connection has to be established through the USB cable.
-To establish this connection we use the [ios-webkit-debugger-proxy](https://github.com/google/ios-webkit-debug-proxy).
+Appium can establish the connection natively since version 1.15 via [appium-ios-device](https://github.com/appium/appium-ios-device).
+[ios-webkit-debugger-proxy](https://github.com/google/ios-webkit-debug-proxy) is only necessary for Appium below version 1.15.
 
 For instruction on how to install and run `ios-webkit-debugger-proxy` see the
 [iOS webkit debug proxy](/writing-running-appium/web/ios-webkit-debug-proxy.md)

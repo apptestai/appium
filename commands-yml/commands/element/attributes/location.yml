@@ -7,7 +7,7 @@ description: The point (0, 0) refers to the upper-left corner of the page. The e
 example_usage:
   java:
     |
-      List<MobileElement> element = (MobileElement) driver.findElementByAccessibilityId("SomeAccessibilityID");
+      MobileElement element = (MobileElement) driver.findElementByAccessibilityId("SomeAccessibilityID");
       Point location = element.getLocation();
   python:
     |
@@ -18,8 +18,11 @@ example_usage:
       let location = await element.getLocation();
   javascript_wdio:
     |
-      let location = driver.getLocation("~SomeAccessibilityId");
+      let location = $("~SomeAccessibilityId").getLocation();
   ruby:
+    |
+      find_element(:accessibility_id, 'SomeAccessibilityID').location
+  ruby_core:
     |
       @driver.find_element(:accessibility_id, 'SomeAccessibilityID').location
   php:
@@ -36,6 +39,7 @@ client_docs:
   javascript_wdio: "http://webdriver.io/api/property/getLocation.html"
   javascript_wd: "https://github.com/admc/wd/blob/master/lib/commands.js#L2175"
   ruby: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Element:location"
+  ruby_core: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Element:location"
   php: "https://github.com/appium/php-client/" # TODO PHP documentation link
   csharp: "https://github.com/appium/appium-dotnet-driver/" # TODO Dotnet documentation link
 
@@ -64,7 +68,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /wd/hub/session/:session_id/elements/:element_id/location
+  url: /session/:session_id/elements/:element_id/location
   method: GET
   url_parameters:
     - name: session_id

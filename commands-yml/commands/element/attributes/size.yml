@@ -7,7 +7,7 @@ description: The size will be returned as an object with width and height proper
 example_usage:
   java:
     |
-      List<MobileElement> element = (MobileElement) driver.findElementByAccessibilityId("SomeAccessibilityID");
+      MobileElement element = (MobileElement) driver.findElementByAccessibilityId("SomeAccessibilityID");
       Dimension elementSize = element.getSize();
   python:
     |
@@ -18,8 +18,11 @@ example_usage:
       let size = await element.getSize();
   javascript_wdio:
     |
-      let size = driver.getElementSize("~SomeAccessibilityId");
+      let size = $("~SomeAccessibilityId").getSize();
   ruby:
+    |
+      find_element(:accessibility_id, 'SomeAccessibilityID').size
+  ruby_core:
     |
       @driver.find_element(:accessibility_id, 'SomeAccessibilityID').size
   php:
@@ -36,6 +39,7 @@ client_docs:
   javascript_wdio: "http://webdriver.io/api/property/getElementSize.html"
   javascript_wd: "https://github.com/admc/wd/blob/master/lib/commands.js#L2203"
   ruby: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Element:size"
+  ruby_core: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Element:size"
   php: "https://github.com/appium/php-client/" # TODO PHP documentation link
   csharp: "https://github.com/appium/appium-dotnet-driver/" # TODO Dotnet documentation link
 
@@ -64,7 +68,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /wd/hub/session/:session_id/elements/:element_id/size
+  url: /session/:session_id/elements/:element_id/size
   method: GET
   url_parameters:
     - name: session_id

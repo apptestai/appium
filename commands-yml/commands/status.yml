@@ -9,7 +9,9 @@ description:
 
     Implementations may optionally include additional meta information as part of the body, but the top-level properties ready and message are reserved and must not be overwritten.
 example_usage:
-  java: // TODO
+  java:
+    |
+      driver.getStatus();
   python:
     |
       selenium.webdriver.common.utils.is_url_connectable(port)
@@ -21,8 +23,10 @@ example_usage:
       driver.status();
   ruby:
     |
-      @driver.remote_status
       remote_status
+  ruby_core:
+    |
+      @driver.remote_status
   php:
     |
       // TODO
@@ -31,11 +35,12 @@ example_usage:
       // TODO
 
 client_docs:
-  # java: "https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/" # TODO
+  java: "https://javadoc.io/page/io.appium/java-client/latest/io/appium/java_client/AppiumDriver.html#getStatus--"
   python: "http://selenium-python.readthedocs.io/api.html#selenium.webdriver.common.utils.is_url_connectable"
   javascript_wdio: "http://webdriver.io/api/protocol/status.html"
   javascript_wd: "https://github.com/admc/wd/blob/master/lib/commands.js#L44"
   ruby: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/DriverExtensions/HasRemoteStatus#remote_status-instance_method"
+  ruby_core: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/DriverExtensions/HasRemoteStatus#remote_status-instance_method"
   php: "https://github.com/appium/php-client/" # TODO
   csharp: "https://github.com/appium/appium-dotnet-driver/" # TODO
 
@@ -45,7 +50,6 @@ driver_support:
     xcuitest: true
     uiautomation: true
   android:
-    espresso: true
     espresso: true
     uiautomator2: true
     uiautomator: true
@@ -64,7 +68,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /wd/hub/status
+  url: /status
   method: GET
   response:
     - name: build.version
@@ -75,6 +79,6 @@ endpoint:
       description: The revision of the local source control client from which the server was built
 
 # Links to specifications. Should link to at least one specification
-specifications: 
+specifications:
   w3c: https://www.w3.org/TR/webdriver/#status
   jsonwp: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#status

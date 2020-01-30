@@ -21,8 +21,12 @@ example_usage:
       await element.click();
   javascript_wdio:
     |
-      driver.click('#SomeId');
+      $('#SomeId').click();
   ruby:
+    |
+      find_element(:accessibility_id, 'SomeId').click
+
+  ruby_core:
     |
       @driver.find_element(:accessibility_id, 'SomeId').click
   php:
@@ -30,7 +34,12 @@ example_usage:
       $driver->byAccessibilityId('SomeId')->click();
   csharp:
     |
-      // TODO
+      MobileElement el = driver.FindElement(MobileByAccessibilityID("Some ID");
+      el.click();
+
+      //Example
+      MobileElement el = driver.FindElement(MobileById("Some ID");
+      el.click();
 
 client_docs:
   java: "https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebElement.html#click--"
@@ -38,6 +47,7 @@ client_docs:
   javascript_wdio: "http://webdriver.io/api/action/click.html"
   javascript_wd: "https://github.com/admc/wd/blob/master/lib/commands.js#L1672"
   ruby: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Element#click-instance_method"
+  ruby_core: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Element#click-instance_method"
   php: "https://github.com/appium/php-client/" # TODO
   csharp: "https://github.com/appium/appium-dotnet-driver/" # TODO
 
@@ -66,7 +76,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /wd/hub/session/:session_id/element/:element_id/click
+  url: /session/:session_id/element/:element_id/click
   method: 'POST'
   url_parameters:
     - name: session_id

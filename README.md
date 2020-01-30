@@ -5,10 +5,7 @@
 [![devDependency Status](https://david-dm.org/appium/appium/dev-status.svg)](https://david-dm.org/appium/appium#info=devDependencies)
 
 [![Monthly Downloads](https://img.shields.io/npm/dm/appium.svg)](https://npmjs.org/package/appium)
-[![Pull Requests](http://issuestats.com/github/appium/appium/badge/pr?style=flat)](http://issuestats.com/github/appium/appium)
-[![Issues Closed](http://issuestats.com/github/appium/appium/badge/issue?style=flat)](http://issuestats.com/github/appium/appium)
 
-[![Build Status](https://team-appium.ci.cloudbees.com/job/Appium/badge/icon)](https://team-appium.ci.cloudbees.com/job/Appium/)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fappium%2Fappium.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fappium%2Fappium?ref=badge_shield)
 [![Greenkeeper badge](https://badges.greenkeeper.io/appium/appium.svg)](https://greenkeeper.io/)
 
@@ -30,10 +27,9 @@ specific information about how that driver works and how to set it up:
     * The [XCUITest Driver](/docs/en/drivers/ios-xcuitest.md)
     * (DEPRECATED) The [UIAutomation Driver](/docs/en/drivers/ios-uiautomation.md)
 * Android
-    * (BETA) The [Espresso Driver](/docs/en/drivers/android-espresso.md)
+    * The [Espresso Driver](/docs/en/drivers/android-espresso.md)
     * The [UiAutomator2 Driver](/docs/en/drivers/android-uiautomator2.md)
     * (DEPRECATED) The [UiAutomator Driver](/docs/en/drivers/android-uiautomator.md)
-    * (DEPRECATED) The [Selendroid Driver](/docs/en/drivers/android-selendroid.md)
 * The [Windows Driver](/docs/en/drivers/windows.md) (for Windows Desktop apps)
 * The [Mac Driver](/docs/en/drivers/mac.md) (for Mac Desktop apps)
 
@@ -60,10 +56,10 @@ a web standard. Don't lock yourself into a proprietary stack.
 For example, if you use Apple's XCUITest library without Appium you can only
 write tests using Obj-C/Swift, and you can only run tests through Xcode.
 Similarly, with Google's UiAutomator or Espresso you can only write tests in
-Java. Appium opens up the possibility of true cross-platform native app
+Java/Kotlin. Appium opens up the possibility of true cross-platform native app
 automation, for mobile and beyond. Finally!
 
-If you're new to Appium, or want a fuller description of what this is all
+If you're new to Appium, or want a more comprehensive description of what this is all
 about, please read our [Introduction to Appium
 Concepts](/docs/en/about-appium/intro.md).
 
@@ -72,7 +68,7 @@ Concepts](/docs/en/about-appium/intro.md).
 Your environment needs to be set up for the particular platforms that you want
 to run tests on. Each of the drivers above documents the requirements for their
 particular brand of automation. At a minimum, you will need to be able to run
-Node.js 6+.
+Node.js 10+.
 
 ### Get Started
 
@@ -80,7 +76,7 @@ Check out our [Getting Started](/docs/en/about-appium/getting-started.md) guide
 to get going with Appium.
 
 There is also sample code that contains [many examples of tests in a variety
-of different languages](https://github.com/appium/sample-code/tree/master/sample-code)!
+of different languages](https://github.com/appium/appium/tree/master/sample-code)!
 
 ### Documentation
 
@@ -117,4 +113,4 @@ stumped.
 
 ### License
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fappium%2Fappium.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fappium%2Fappium?ref=badge_large) [![Greenkeeper badge](https://badges.greenkeeper.io/appium/appium.svg)](https://greenkeeper.io/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fappium%2Fappium.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fappium%2Fappium?ref=badge_large)

@@ -26,13 +26,11 @@ example_usage:
       await action.perform();
   javascript_wdio:
     |
-      driver.touchPerform({
-        action: 'tap',
-        options: {
-          element: element
-        }
-      });
+      driver.touchAction('tap');
   ruby:
+    |
+      touch_action.single_tap(element).perform
+  ruby_core:
     |
       @driver.touch_action.single_tap(element).perform
   php:
@@ -40,7 +38,8 @@ example_usage:
       // TODO PHP sample
   csharp:
     |
-      // TODO C# sample
+      TouchAction touchAction = new TouchAction(driver);
+      touchAction.Tap(element).Perform();
 
 client_docs:
   java: "https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/interactions/touch/TouchActions.html#singleTap-org.openqa.selenium.WebElement-"
@@ -48,6 +47,7 @@ client_docs:
   javascript_wdio: "http://webdriver.io/api/mobile/touchPerform.html"
   javascript_wd: "https://github.com/admc/wd/blob/master/lib/commands.js#L1531"
   ruby: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium%2FWebDriver%2FTouchActionBuilder:single_tap"
+  ruby_core: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium%2FWebDriver%2FTouchActionBuilder:single_tap"
   php: "https://github.com/appium/php-client/" # TODO PHP documentation link
   csharp: "https://github.com/appium/appium-dotnet-driver/" # TODO Dotnet documentation link
 
