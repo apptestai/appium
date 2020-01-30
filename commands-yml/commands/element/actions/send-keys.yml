@@ -34,12 +34,7 @@ example_usage:
       $el->setText('Hello world!');
   csharp:
     |
-      MobileElement el = driver.FindElement(MobileByAccessibilityID("Some ID");
-      el.SendKeys("Some Text");
-
-      //Example
-      MobileElement el = driver.FindElement(MobileById("Some ID");
-      el.SendKeys("Hello World");
+      // TODO C# sample
 
 client_docs:
   java: "https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebElement.html#sendKeys-java.lang.CharSequence...-"
@@ -76,7 +71,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /session/:session_id/element/:element_id/value
+  url: /wd/hub/session/:session_id/element/:element_id/value
   method: 'POST'
   url_parameters:
     - name: session_id
@@ -86,10 +81,7 @@ endpoint:
   json_parameters:
     - name: value
       type: array<string>
-      description: (MJSONWP) The sequence of keys to type. An array must be provided. The server should flatten the array items to a single string to be typed
-    - name: text
-      type: string
-      description: (W3C) A single string to be typed
+      description: The sequence of keys to type. An array must be provided. The server should flatten the array items to a single string to be typed.
 
 # Links to specifications. Should link to at least one specification
 specifications:

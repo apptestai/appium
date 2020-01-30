@@ -27,9 +27,10 @@ specific information about how that driver works and how to set it up:
     * The [XCUITest Driver](/docs/en/drivers/ios-xcuitest.md)
     * (DEPRECATED) The [UIAutomation Driver](/docs/en/drivers/ios-uiautomation.md)
 * Android
-    * The [Espresso Driver](/docs/en/drivers/android-espresso.md)
+    * (BETA) The [Espresso Driver](/docs/en/drivers/android-espresso.md)
     * The [UiAutomator2 Driver](/docs/en/drivers/android-uiautomator2.md)
     * (DEPRECATED) The [UiAutomator Driver](/docs/en/drivers/android-uiautomator.md)
+    * (DEPRECATED) The [Selendroid Driver](/docs/en/drivers/android-selendroid.md)
 * The [Windows Driver](/docs/en/drivers/windows.md) (for Windows Desktop apps)
 * The [Mac Driver](/docs/en/drivers/mac.md) (for Mac Desktop apps)
 
@@ -56,7 +57,7 @@ a web standard. Don't lock yourself into a proprietary stack.
 For example, if you use Apple's XCUITest library without Appium you can only
 write tests using Obj-C/Swift, and you can only run tests through Xcode.
 Similarly, with Google's UiAutomator or Espresso you can only write tests in
-Java/Kotlin. Appium opens up the possibility of true cross-platform native app
+Java. Appium opens up the possibility of true cross-platform native app
 automation, for mobile and beyond. Finally!
 
 If you're new to Appium, or want a more comprehensive description of what this is all
@@ -68,7 +69,7 @@ Concepts](/docs/en/about-appium/intro.md).
 Your environment needs to be set up for the particular platforms that you want
 to run tests on. Each of the drivers above documents the requirements for their
 particular brand of automation. At a minimum, you will need to be able to run
-Node.js 10+.
+Node.js 6+.
 
 ### Get Started
 
@@ -76,7 +77,7 @@ Check out our [Getting Started](/docs/en/about-appium/getting-started.md) guide
 to get going with Appium.
 
 There is also sample code that contains [many examples of tests in a variety
-of different languages](https://github.com/appium/appium/tree/master/sample-code)!
+of different languages](https://github.com/appium/sample-code/tree/master/sample-code)!
 
 ### Documentation
 

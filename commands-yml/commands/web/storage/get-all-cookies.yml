@@ -17,10 +17,10 @@ example_usage:
       let cookies = driver.getCookies():
   ruby:
     |
-      manage.all_cookies
+      all_cookies
   ruby_core:
     |
-      @driver.manage.all_cookies
+      @driver.all_cookies
   php:
     |
       // TODO PHP sample
@@ -63,7 +63,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /session/:sessionId/cookie
+  url: /wd/hub/session/:sessionId/cookie
   method: GET
   url_parameters:
     - name: session_id

@@ -18,7 +18,7 @@ to Appium, you will need [Node.js and NPM](http://nodejs.org) (use
 [n](https://github.com/visionmedia/n), or `brew install node` to install
 Node.js. Make sure you have not installed Node or Appium with `sudo`, otherwise
 you'll run into problems). We recommend the latest stable version, though
-Appium supports Node 10+.
+Appium supports Node 8+.
 
 The actual installation is as simple as:
 
@@ -46,10 +46,10 @@ At some point, make sure you review the driver documentation for the platform
 you want to automate, so your system is set up correctly:
 
 - The [XCUITest Driver](/docs/en/drivers/ios-xcuitest.md) (for iOS and tvOS apps)
-- The [Espresso Driver](/docs/en/drivers/android-espresso.md) (for Android apps)
 - The [UiAutomator2 Driver](/docs/en/drivers/android-uiautomator2.md) (for Android apps)
 - The [Windows Driver](/docs/en/drivers/windows.md) (for Windows Desktop apps)
 - The [Mac Driver](/docs/en/drivers/mac.md) (for Mac Desktop apps)
+- (BETA) The [Espresso Driver](/docs/en/drivers/android-espresso.md) (for Android apps)
 
 ### Verifying the Installation
 
@@ -200,7 +200,8 @@ path with the actual download path for your system). We've registered this fact
 with `webdriverio` and now have a client object which will represent the
 connection to the Appium server. From here, we can go ahead and start the
 session, perform some test commands, and end the session. In our case, we will
-simply type into a text field and check that the correct text was entered:
+simply tap into a few menus and then back out the way we came before ending the
+session:
 
 ```js
 // javascript
@@ -212,9 +213,13 @@ assert.equal(value, "Hello World!");
 ```
 
 What's going on here is that after creating a session and launching our app,
-we're instructing Appium to find an element in the app hierarchy and type into
-it. The same field is then queried for its text, which is asserted to be what we
-expect.
+we're instructing Appium to find an element in the app hierarchy and click on
+it. Specifically, `webdriverio` has a convention where the `~` prefix means to
+find an element by its "accessbility id", which in the case of Android means an
+element's "content description". So we find and tap on these elements in order
+to navigate through the app's menu system. Then we can use the `back()` method
+to trigger the Android "back" behavior and get back to where we started before
+ending the session.
 
 Putting it all together, the file should look like:
 

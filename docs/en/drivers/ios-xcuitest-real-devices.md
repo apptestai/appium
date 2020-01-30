@@ -2,13 +2,34 @@
 
 ### Installing dependencies
 
-From Appium 1.15.0, Appium communicates with a real device via [appium-ios-device](https://github.com/appium/appium-ios-device).
-You no longer install extra dependencies.
+Appium iOS real device support depends on a central third-party software suite,
+[libimobiledevice](http://www.libimobiledevice.org/), which is easily installable
+with [Homebrew](http://brew.sh/):
 
-XCUITest driver installs a helper application called `WebDriverAgent-Runner` onto the device,
-and handles the application under test via it.
-While this is simple in theory, the hoops of code signing and provisioning applications for
-development and testing can make this a bit of a headache.
+```
+brew install libimobiledevice --HEAD
+```
+
+In addition to the dependency on `libimobiledevice`, Appium support for real
+devices running iOS 9.3 and above using Xcode 8+ also depends on `ios-deploy`,
+which is easily available through [npm](https://www.npmjs.com/package/ios-deploy) or [Homebrew](http://brew.sh/):
+
+```
+npm install -g ios-deploy
+```
+```
+brew install ios-deploy
+```
+
+(For hybrid or web tests, you will also need to follow the
+[ios-webkit-debug-proxy](/docs/en/writing-running-appium/web/ios-webkit-debug-proxy.md)
+setup instructions)
+
+The way that the XCUITest driver works is via the installation of a helper
+application called `WebDriverAgent-Runner` onto the device, through which the
+application under test is automated. While this is simple in theory, the hoops
+of code signing and provisioning applications for development and testing can
+make this a bit of a headache.
 
 The documentation on [appium-xcuitest-driver](https://github.com/appium/appium-xcuitest-driver) is also helpful to resolve dependencies.
 
@@ -126,8 +147,8 @@ installed, and is _not_ recommended):
     $ which appium
     /path/where/installed/bin/appium
 ```
-*   Given this installation location, `/path/where/installed/bin/appium`, `WebDriverAgent` project
-    will be found in `/path/where/installed/lib/node_modules/appium/node_modules/appium-webdriveragent`.
+*   Given this installation location, `/path/where/installed/bin/appium`, `WebDriverAgent`
+    will be found in `/path/where/installed/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent`.
     Open a terminal and go to that location, then run the following in order to
     set the project up:
 ```

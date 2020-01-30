@@ -79,7 +79,7 @@ endpoint:
       description: The desired geolocation longitude
     - name: altitude
       type: number
-      description: The desired geolocation altitude (optional. altitude works on real Android devices only)
+      description: The desired geolocation altitude (optional)
 
 # Links to specifications. Should link to at least one specification
 specifications:

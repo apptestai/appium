@@ -17,10 +17,10 @@ example_usage:
       driver.refresh();
   ruby:
     |
-      navigate.refresh
+      refresh
   ruby_core:
     |
-      @driver.navigate.refresh
+      @driver.refresh
   php:
     |
       // TODO PHP sample
@@ -63,7 +63,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /session/:session_id/refresh
+  url: /wd/hub/session/:session_id/refresh
   method: POST
   url_parameters:
     - name: session_id

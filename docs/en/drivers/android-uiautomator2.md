@@ -12,17 +12,14 @@ repo.
 
 Older Android-based drivers include:
 * The [UiAutomator Driver](/docs/en/drivers/android-uiautomator.md)
+* The [Selendroid Driver](/docs/en/drivers/android-selendroid.md)
 
 ### Requirements and Support
 
 In addition to Appium's general requirements:
 
-* Java 8 installed and configured correctly for your platform
+* Java 7 installed and configured correctly for your platform
 * Mac, Windows, or Linux OS with the ability to run the Android SDK
-
-Further, the UiAutomator2 driver does not support Android versions below 5.0
-(Lollipop, API level 21). If you are automating such versions, consider using
-the [UiAutomator driver](/docs/en/drivers/android-uiautomator.md);
 
 ### Usage
 
@@ -81,9 +78,6 @@ Reference](#TODO).
 
    On Windows, this will be done by setting the environment variable in the
    control panel, using the same strategy as for setting PATH above.
-   [Android Studio](https://developer.android.com/studio/index.html) also has JDK
-   in the path like `/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home` (Mac).
-   You can specify the path, too.
 
 1. Install the [Android SDK](http://developer.android.com/sdk/index.html). The
    supported way of doing this nowadays is to use [Android

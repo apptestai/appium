@@ -23,10 +23,10 @@ example_usage:
       @driver.get("http://appium.io")
   php:
     |
-      $this->driver->get("http://appium.io");
+      // TODO PHP sample
   csharp:
     |
-      driver.Navigate().GoToUrl("http://appium.io");
+      // TODO C# sample
 
 client_docs:
   java: "https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebDriver.html#get-java.lang.String-"
@@ -63,7 +63,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /session/:session_id/url
+  url: /wd/hub/session/:session_id/url
   method: POST
   url_parameters:
     - name: session_id

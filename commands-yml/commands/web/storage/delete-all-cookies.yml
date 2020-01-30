@@ -17,10 +17,10 @@ example_usage:
       driver.deleteCookies();
   ruby:
     |
-      manage.delete_all_cookies
+      delete_all_cookies
   ruby_core:
     |
-      @driver.manage.delete_all_cookies
+      @driver.delete_all_cookies
   php:
     |
       // TODO PHP sample
@@ -63,7 +63,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /session/:sessionId/cookie
+  url: /wd/hub/session/:sessionId/cookie
   method: DELETE
   url_parameters:
     - name: session_id

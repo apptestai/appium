@@ -31,8 +31,7 @@ example_usage:
       $el = $this->byAccessibilityId('SomeAccessibilityID');
   csharp:
     |
-      AndroidElement elementOne = driver.FindElementByAccessibilityID("Some ID");
-      AndroidElement elementTwo = driver.FindElementByClassName("Some class");
+      // TODO C# sample
 
 client_docs:
   java: "https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebElement.html#findElement-org.openqa.selenium.By-"
@@ -69,7 +68,7 @@ client_support:
 
 # Information about the HTTP endpoints
 endpoint:
-  url: /session/:session_id/element
+  url: /wd/hub/session/:session_id/element
   method: 'POST'
   url_parameters:
     - name: session_id
