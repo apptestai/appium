@@ -1,5 +1,5 @@
 {
-  "name": "appium",
+  "name": "appium-apptestai",
   "description": "Automation for Apps.",
   "tags": [
     "automation",
@@ -11,7 +11,7 @@
     "firefoxos",
     "testing"
   ],
-  "version": "1.16.0-beta.3",
+  "version": "1.16.0",
   "author": "https://github.com/appium",
   "license": "Apache-2.0",
   "repository": {
@@ -96,7 +96,8 @@
     "zip": "zip -qr appium.zip .",
     "upload": "gulp github-upload",
     "zip-and-upload": "npm run zip && npm run upload",
-    "authorize-ios": "authorize-ios"
+    "authorize-ios": "authorize-ios",
+	"post-pack": ""
   },
   "pre-commit": [
     "precommit-msg",
