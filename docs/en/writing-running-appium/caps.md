@@ -157,6 +157,8 @@ These Capabilities are available only on the [UiAutomator2 Driver](/docs/en/driv
 |`uiautomator2ServerLaunchTimeout`|Timeout in milliseconds used to wait for an uiAutomator2 server to launch. Defaults to `20000` |e.g., `20000`|
 |`uiautomator2ServerInstallTimeout`|Timeout in milliseconds used to wait for an uiAutomator2 server to be installed. Defaults to `20000` |e.g., `20000`|
 |`skipServerInstallation`|Skip uiAutomator2 server installation and use uiAutomator2 server from the device. Can be used to improve startup performance when an uiAutomator2 server in proper version is already installed on the device. Defaults to `false` | `true` or `false`|
+|`userProfile`| Enforce user profile as the given parameter if the value was provided. It should be an integer. | e.g., `11` |
+|`disableSuppressAccessibilityService`| Set [FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES](https://developer.android.com/reference/android/app/UiAutomation#FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES) to allow existing accessibility service continue to run, and a new one may start for Appium. It helps to test the app under test which has accessibility feature such as TalkBack. Appium will not specify the flag if nothing is provided. The flag requires Android API Level 24+. | `true`, `false` |
 
 #### Espresso Only
 
@@ -167,6 +169,10 @@ These Capabilities are available only on the [Espresso Driver](/docs/en/drivers/
 |`espressoServerLaunchTimeout`|Timeout in milliseconds used to wait for the Espresso server to launch. Defaults to `30000` |e.g., `50000`|
 |`espressoBuildConfig`|Path to the Espresso server build configuration JSON (see below)|e.g., `/projects/myapp-tests/buildconfig.json`|
 |`showGradleLog`|Whether to pipe Gradle build log for the Espresso server to the Appium log. Defaults to `false`|e.g., `true`|
+|`skipServerInstallation`|Skip Espresso server build and apk installation. This option could break proper Espresso server setup for the particular Appium version, but it can improve startup performance when the proper Espresso server and the proper app under test are already installed on the device. Please, make sure not to enable this option if the Espresso server or the application under test needs an update. Defaults to `false` | `true` or `false`|
+|`intentOptions`|Intent options which will be used to start the application under test. It can set intent options such as `action`, `categories` and `component` as JSON format. Please read [#538](https://github.com/appium/appium-espresso-driver/issues/538) as an example usage. | e.g. `{"action": "android.intent.action.MAIN", "categories": "android.intent.category.LAUNCHER", "component": "com.appium/.launcher.MainActivity"` |
+|`disableSuppressAccessibilityService`| Set [FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES](https://developer.android.com/reference/android/app/UiAutomation#FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES) to allow existing accessibility service continue to run, and a new one may start for Appium. It helps to test the app under test which has accessibility feature such as TalkBack. Appium will not specify the flag if nothing is provided. The flag requires Android API Level 24+. | `true`, `false` |
+
 
 ##### Espresso server build configuration JSON
 Passing this configuration file using `espressoBuildConfig` desired capability allows to fine-tune the build process of the Espresso server. It is mostly useful in cases where the default Espresso server settings are not compatible with your application under test.
@@ -254,6 +260,11 @@ Driver](/docs/en/drivers/ios-uiautomation.md).
 #### iOS Only, using XCUITest
 
 (For XCUITest-specific capabilities, please refer to the documentation on the [XCUITest Driver repo](https://github.com/appium/appium-xcuitest-driver#desired-capabilities) itself.)
+
+
+### MacDriver Only
+
+(For MacDriver capabilities, please refer to the documentation on the [Appium Mac Driver repo](https://github.com/appium/appium-mac-driver#desired-capabilities) itself.)
 
 ### You.i Engine Only
 
