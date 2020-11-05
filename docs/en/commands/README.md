@@ -34,6 +34,7 @@
     <li><a href='/docs/en/commands/session/settings'>Settings</a><ul>    <li><a href='/docs/en/commands/session/settings/update-settings.md'>Update Settings</a></li>
     <li><a href='/docs/en/commands/session/settings/get-settings.md'>Get Device Settings</a></li>
 </ul></li>
+    <li><a href='/docs/en/commands/session/execute-driver.md'>Execute Driver Script</a></li>
 </ul></li>
     <li><a href='/docs/en/commands/device'>Device</a><ul>    <li><a href='/docs/en/commands/device/activity'>Activity</a><ul>    <li><a href='/docs/en/commands/device/activity/start-activity.md'>Start Activity</a></li>
     <li><a href='/docs/en/commands/device/activity/current-activity.md'>Current Activity</a></li>

@@ -1,6 +1,6 @@
 ---
 name: Go to URL
-short_description: Navigate to a new URL (Web context) or open an Appium [deep link](https://appiumpro.com/editions/7) (Native)
+short_description: Navigate to a new URL (Web context) or open an Appium [deep link](https://appiumpro.com/editions/7-speeding-up-tests-with-deep-links) (Native)
 
 example_usage:
   java:
@@ -11,7 +11,7 @@ example_usage:
       self.driver.get("http://appium.io/")
   javascript_wd:
     |
-      await driver.url("http://appium.io/");
+      await driver.get("http://appium.io/");
   javascript_wdio:
     |
       driver.url("http://appium.io");
@@ -36,7 +36,7 @@ client_docs:
   ruby: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Driver:get"
   ruby_core: "https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Driver:get"
   php: "https://github.com/appium/php-client/" # TODO PHP documentation link
-  csharp: "https://github.com/appium/appium-dotnet-driver/" # TODO Dotnet documentation link
+  csharp: "https://github.com/SeleniumHQ/selenium/blob/master/dotnet/src/webdriver/Remote/RemoteNavigator.cs"
 
 # Driver support by platform
 driver_support:

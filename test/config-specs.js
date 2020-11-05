@@ -11,7 +11,7 @@ import { getGitRev, getBuildInfo, checkNodeOk, warnNodeDeprecations,
 import getParser from '../lib/parser';
 import logger from '../lib/logger';
 import { fs } from 'appium-support';
-import request from 'request-promise';
+import axios from 'axios';
 
 let should = chai.should();
 chai.use(chaiAsPromised);
@@ -45,7 +45,7 @@ describe('Config', function () {
       let getStub;
       beforeEach(function () {
         mockFs = sinon.mock(fs);
-        getStub = sinon.stub(request, 'get');
+        getStub = sinon.stub(axios, 'get');
       });
       afterEach(function () {
         getStub.restore();
@@ -56,7 +56,7 @@ describe('Config', function () {
         await verifyBuildInfoUpdate(true);
       });
       it('should get a configuration object if the local git metadata is not present', async function () {
-        getStub.onCall(0).returns([
+        getStub.onCall(0).returns({data: [
           {
             'name': `v${APPIUM_VER}`,
             'zipball_url': 'https://api.github.com/repos/appium/appium/zipball/v1.9.0-beta.1',
@@ -77,8 +77,8 @@ describe('Config', function () {
             },
             'node_id': 'MDM6UmVmNzUzMDU3MDp2MS44LjItYmV0YQ=='
           }
-        ]);
-        getStub.onCall(1).returns({
+        ]});
+        getStub.onCall(1).returns({data: {
           'sha': '3c2752f9f9c56000705a4ae15b3ba68a5d2e644c',
           'node_id': 'MDY6Q29tbWl0NzUzMDU3MDozYzI3NTJmOWY5YzU2MDAwNzA1YTRhZTE1YjNiYTY4YTVkMmU2NDRj',
           'commit': {
@@ -109,7 +109,7 @@ describe('Config', function () {
           'url': 'https://api.github.com/repos/appium/appium/commits/3c2752f9f9c56000705a4ae15b3ba68a5d2e644c',
           'html_url': 'https://github.com/appium/appium/commit/3c2752f9f9c56000705a4ae15b3ba68a5d2e644c',
           'comments_url': 'https://api.github.com/repos/appium/appium/commits/3c2752f9f9c56000705a4ae15b3ba68a5d2e644c/comments',
-        });
+        }});
         await verifyBuildInfoUpdate(false);
       });
     });
@@ -203,7 +203,7 @@ describe('Config', function () {
     beforeEach(function () {
       // give all the defaults
       for (let rawArg of parser.rawArgs) {
-        args[rawArg[1].dest] = rawArg[1].defaultValue;
+        args[rawArg[1].dest] = rawArg[1].default;
       }
     });
     describe('getNonDefaultArgs', function () {
@@ -296,7 +296,7 @@ describe('Config', function () {
     const defaultArgs = {};
     // give all the defaults
     for (let rawArg of parser.rawArgs) {
-      defaultArgs[rawArg[1].dest] = rawArg[1].defaultValue;
+      defaultArgs[rawArg[1].dest] = rawArg[1].default;
     }
     let args = {};
     beforeEach(function () {

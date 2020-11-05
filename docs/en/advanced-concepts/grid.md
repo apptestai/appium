@@ -1,6 +1,6 @@
 ## Selenium Grid
 
-You are able to register your appium server with a local [Selenium grid](https://github.com/SeleniumHQ/selenium/wiki/Grid2) ([setup docs](http://docs.seleniumhq.org/docs/07_selenium_grid.jsp)) by using the
+You are able to register your appium server with a local [Selenium grid](https://github.com/SeleniumHQ/selenium/wiki/Grid2) ([setup docs](https://www.selenium.dev/documentation/en/grid/grid_3/setting_up_your_own_grid/)) by using the
 `--nodeconfig` server parameter.
 
 ```center
@@ -14,7 +14,7 @@ In the node config file you have to define the `browserName`,
 will re-direct your test to the right device. You will also need to
 configure your **host** details and the **selenium grid** details. For
 a full list of all parameters and descriptions look
-[here](https://github.com/SeleniumHQ/selenium/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNodeWebDriver.json)
+[here](https://github.com/SeleniumHQ/selenium/wiki/Grid2)
 
 Once you start the appium server and it registers with the grid,
 you will see your device on the grid console page:
@@ -52,7 +52,7 @@ you will see your device on the grid console page:
 }
 ```
 
-Valid platforms are listed [here](http://www.seleniumhq.org/about/platforms.jsp)
+Valid platforms are listed [here](https://www.selenium.dev/downloads/)
 
 If `url`, `host`, and `port` are not given, the config will be auto updated
 to point to localhost:whatever-port-Appium-started-on.

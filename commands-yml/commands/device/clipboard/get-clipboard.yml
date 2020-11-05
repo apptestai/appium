@@ -5,6 +5,10 @@ description:
   >
     Get the content of the system clipboard
 
+
+    (For iOS real devices)
+    Apple security preferences require the WebDriverAgentRunner application to be in [foreground](https://github.com/appium/WebDriverAgent/issues/330) in order to be able to receive the system clipboard content. Otherwise an empty string is always returned. Consider using [Activate App](/docs/en/commands/device/app/activate-app.md) and [Background App](/docs/en/commands/device/app/background-app.md) to change the foreground application.
+
 example_usage:
   java:
     |
@@ -35,7 +39,7 @@ example_usage:
 
 client_docs:
   java: "https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebElement.html#click--"
-  python: "https://github.com/appium/python-client"
+  python: "https://appium.github.io/python-client-sphinx/webdriver.extensions.html#webdriver.extensions.clipboard.Clipboard.get_clipboard"
   javascript_wdio: "https://webdriver.io/docs/api/appium.html#getclipboard"
   javascript_wd: "https://github.com/admc/wd/releases"
   ruby:

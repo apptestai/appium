@@ -106,6 +106,7 @@ These Capabilities are available only on Android-based drivers (like
 |`chromedriverPorts`| A list of valid ports for Appium to use for communication with Chromedrivers. This capability supports multiple webview scenarios. The form of this capability is an array of numeric ports, where array items can themselves be arrays of length 2, where the first element is the start of an inclusive range and the second is the end. By default, Appium will use any free port.|e.g. `[8000, [9000, 9005]]`|
 |`ensureWebviewsHavePages`| Whether or not Appium should augment its webview detection with page detection, guaranteeing that any webview contexts which show up in the context list have active pages. This can prevent an error if a context is selected where Chromedriver cannot find any pages. Defaults to `false`|e.g. `true`|
 |`webviewDevtoolsPort`| To support the `ensureWebviewsHavePages` feature, it is necessary to open a TCP port for communication with the webview on the device under test. This capability allows overriding of the default port of `9222`, in case multiple sessions are running simultaneously (to avoid port clash), or in case the default port is not appropriate for your system.|e.g. `9543`|
+| `enableWebviewDetailsCollection` | Enables collection of detailed WebView information via `/json/version` CDP (Chrome Developer Protocol) endpoint since Appium 1.18.0+. This helps to properly match Chromedriver version which supports the given WebView. Without this flag enabled, Appium tries to guess the version of the WebView based on the version of the corresponding installed package (which usually [fails](https://github.com/appium/appium/issues/13918) for custom web views). Defaults to `false` | `true` or `false` |
 |`dontStopAppOnReset`| Doesn't stop the process of the app under test, before starting the app using adb. If the app under test is created by another anchor app, setting this false, allows the process of the anchor app to be still alive, during the start of the test app using adb. In other words, with `dontStopAppOnReset` set to `true`, we will not include the `-S` flag in the `adb shell am start` call. With this capability omitted or set to `false`, we include the `-S` flag. Default `false`| `true` or `false`|
 |`unicodeKeyboard`| Enable Unicode input, default `false`| `true` or `false`|
 |`resetKeyboard`| Reset keyboard to its original state, after running Unicode tests with `unicodeKeyboard` capability. Ignored if used alone. Default `false`| `true` or `false`|
@@ -135,6 +136,10 @@ These Capabilities are available only on Android-based drivers (like
 |`buildToolsVersion`| Specify the Android `build-tools` version to be something different than the default, which is to use the most recent version. It is helpful to use a non-default version if your environment uses alpha/beta build tools. | e.g. `'28.0.3'` |
 |`androidNaturalOrientation`| Allow for correct handling of orientation on landscape-oriented devices. Set to `true` to basically flip the meaning of `PORTRAIT` and `LANDSCAPE`. Defaults to `false` | `true`, `false` |
 | `enforceAppInstall` | By default application installation is skipped if newer or the same version of this app is already present on the device under test. Setting this option to `true` will enforce Appium to always install the current application build independently of the currently installed version of it. Defaults to `false`. | `true` , `false` |
+| `ignoreHiddenApiPolicyError` | Ignores `Security exception: Permission denial` alert and allows to continue the session creation process since Appium 1.18.0+. The error happens when Appium tries to relax [hidden API policy](https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces#how_can_i_enable_access_to_non-sdk_interfaces), although some devices with a customized firmware deny such requests. Defaults to `false`. | `true`, `false` |
+| `mockLocationApp` | Sets the package identifier of the app, which is used as a system mock location provider since Appium 1.18.0+. This capability has no effect on emulators. If the value is set to `null` or an empty string, then Appium will skip the mocked location provider setup procedure. Defaults to Appium Setting package identifier (`io.appium.settings`). | e.g., `null`, `io.appium.settings`, `example.your.app` |
+| logcatFormat | Set the output format for logcat messages since Appium 1.18.0. Supported formats are listed in [here](https://github.com/appium/appium-adb/blob/master/lib/logcat.js). Please read [logcat#outputFormat](https://developer.android.com/studio/command-line/logcat#outputFormat) for more details about each format. Defaults to `threadtime`. | e.g., `process`|
+| logcatFilterSpecs | Set the output filter rule for logcat messages since Appium 1.18.0. Please read [logcat#filteringOutput](https://developer.android.com/studio/command-line/logcat#filteringOutput) for more details about the rule. [Write and View Logs with Logcat](https://developer.android.com/studio/debug/am-logcat) is also helpful. | e.g., `['*:W', 'MyActivity:D']` (`MyActivity` is a tag)|
 
 #### UIAutomator (1 & 2)
 
@@ -153,12 +158,13 @@ These Capabilities are available only on the [UiAutomator2 Driver](/docs/en/driv
 
 |Capability|Description|Values|
 |----|-----------|-------|
-|`appWaitForLaunch`| Tries to launch the app under test without [-W](https://developer.android.com/studio/command-line/adb#am) option in session creation. It might help when the session creation does not proceed since `shell am start` does not respond. Defaults to `true` | `false` or `true` |
-|`uiautomator2ServerLaunchTimeout`|Timeout in milliseconds used to wait for an uiAutomator2 server to launch. Defaults to `20000` |e.g., `20000`|
-|`uiautomator2ServerInstallTimeout`|Timeout in milliseconds used to wait for an uiAutomator2 server to be installed. Defaults to `20000` |e.g., `20000`|
-|`skipServerInstallation`|Skip uiAutomator2 server installation and use uiAutomator2 server from the device. Can be used to improve startup performance when an uiAutomator2 server in proper version is already installed on the device. Defaults to `false` | `true` or `false`|
+|`appWaitForLaunch`| Tries to launch the app under test without [-W](https://developer.android.com/studio/command-line/adb#am) option in session creation. It might help when the session creation does not proceed since `shell am start` does not respond. Defaults to `true`. | `false` or `true` |
+|`disableSuppressAccessibilityService`| Set [FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES](https://developer.android.com/reference/android/app/UiAutomation#FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES) to allow existing accessibility service continue to run, and a new one may start for Appium. It helps to test the app under test which has accessibility feature such as TalkBack. Appium will not specify the flag if nothing is provided. The flag requires Android API Level 24+. | `false` or `true` |
+|`mjpegServerPort`| If specified this is the local port that will be bound to the `appium-uiautomator2-server`'s MJPEG screenshot stream. This can be used in conjunction with `mjpegScreenshotUrl`. It should be a valid integer in range _1025..65535_. Defaults to `null`. e.g. `mjpegScreenshotUrl = 'http://localhost:9200', mjpegServerPort = 9200`| any `Integer`, recommended: `9200..9299` for consistency w/ `serverPort` range |
+|`skipServerInstallation`| Skip uiAutomator2 server installation and use uiAutomator2 server from the device. Can be used to improve startup performance when an uiAutomator2 server in proper version is already installed on the device. Defaults to `false`. | `false` or `true` |
+|`uiautomator2ServerInstallTimeout`| Timeout in milliseconds used to wait for an uiAutomator2 server to be installed. Defaults to `20000` |e.g., `20000`|
+|`uiautomator2ServerLaunchTimeout`| Timeout in milliseconds used to wait for an uiAutomator2 server to launch. Defaults to `20000` |e.g., `20000`|
 |`userProfile`| Enforce user profile as the given parameter if the value was provided. It should be an integer. | e.g., `11` |
-|`disableSuppressAccessibilityService`| Set [FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES](https://developer.android.com/reference/android/app/UiAutomation#FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES) to allow existing accessibility service continue to run, and a new one may start for Appium. It helps to test the app under test which has accessibility feature such as TalkBack. Appium will not specify the flag if nothing is provided. The flag requires Android API Level 24+. | `true`, `false` |
 
 #### Espresso Only
 
@@ -167,11 +173,12 @@ These Capabilities are available only on the [Espresso Driver](/docs/en/drivers/
 |Capability|Description|Values|
 |----|-----------|-------|
 |`espressoServerLaunchTimeout`|Timeout in milliseconds used to wait for the Espresso server to launch. Defaults to `30000` |e.g., `50000`|
-|`espressoBuildConfig`|Path to the Espresso server build configuration JSON (see below)|e.g., `/projects/myapp-tests/buildconfig.json`|
+|`espressoBuildConfig`|Path to the Espresso server build configuration JSON (see below) or a stringified JSON itself (only supported since server version 1.19)|e.g., `/projects/myapp-tests/buildconfig.json`|
 |`showGradleLog`|Whether to pipe Gradle build log for the Espresso server to the Appium log. Defaults to `false`|e.g., `true`|
 |`skipServerInstallation`|Skip Espresso server build and apk installation. This option could break proper Espresso server setup for the particular Appium version, but it can improve startup performance when the proper Espresso server and the proper app under test are already installed on the device. Please, make sure not to enable this option if the Espresso server or the application under test needs an update. Defaults to `false` | `true` or `false`|
 |`intentOptions`|Intent options which will be used to start the application under test. It can set intent options such as `action`, `categories` and `component` as JSON format. Please read [#538](https://github.com/appium/appium-espresso-driver/issues/538) as an example usage. | e.g. `{"action": "android.intent.action.MAIN", "categories": "android.intent.category.LAUNCHER", "component": "com.appium/.launcher.MainActivity"` |
 |`disableSuppressAccessibilityService`| Set [FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES](https://developer.android.com/reference/android/app/UiAutomation#FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES) to allow existing accessibility service continue to run, and a new one may start for Appium. It helps to test the app under test which has accessibility feature such as TalkBack. Appium will not specify the flag if nothing is provided. The flag requires Android API Level 24+. | `true`, `false` |
+|`appLocale`| Set [Locale](https://developer.android.com/reference/java/util/Locale) for [the target context](https://developer.android.com/reference/androidx/test/core/app/ApplicationProvider#getApplicationContext()) since Appium 1.18.0. `language`, `country` and `variant` are available as same as the Locale class. `language` is mandatory. Please check the [locale page](https://developer.android.com/reference/java/util/Locale) for more details. Setting `appLocale` only affects the locale of the application under test and does not influence other system views, such as the status bar. Consider setting `language`, `locale` and/or `localeScript` capabilities if you would like to change the locale for the entire the system. | e.g., `{"language": "ja", "country": "JP"}` |
 
 
 ##### Espresso server build configuration JSON
@@ -214,9 +221,10 @@ The module versions enumerated under `toolsVersion` are only used to build the s
 
 ***Application dependencies***
 
-`additionalAppDependencies` array specifies additional dependencies of the application under test that build tools should know about when building the Espresso server. For example: `[ "com.google.android.material:material:1.0.0" ]`.
+`additionalAppDependencies` and `additionalAndroidTestDependencies` array specify additional dependencies of the application under test that build tools should know about when building the Espresso server.
+For example: `"additionalAndroidTestDependencies": [ "com.google.android.material:material:1.0.0" ]`.
 
-Items belonging to this array are translated to `implementation` lines in Gradle build files of the Espresso server.
+Items belonging to `additionalAppDependencies` array are translated to `implementation` lines in Gradle build files of the Espresso server. `additionalAndroidTestDependencies` are translated to `androidTestImplementation`.
 
 ### iOS Only
 
@@ -256,6 +264,7 @@ Driver](/docs/en/drivers/ios-uiautomation.md).
 |`enableAsyncExecuteFromHttps`| capability to allow simulators to execute asynchronous JavaScript on pages using HTTPS. Defaults to `false` | `true` or `false` |
 |`skipLogCapture`|Skips to start capturing logs such as crash, system, safari console and safari network. It might improve performance such as network. Log related commands will not work. Defaults to `false`. |`true` or `false`|
 |`webkitDebugProxyPort`| (Real device only) Port to which `ios-webkit-debug-proxy` is connected, during real device tests. Default is `27753`.|`12021`|
+|`fullContextList` | Returns the detailed information on contexts for the [get available context](/docs/en/commands/context/get-contexts.md) command. If this capability is enabled, then each item in the returned contexts list would additionally include WebView title, full URL and the bundle identifier. Defaults to `false`. | `true` or `false` |
 
 #### iOS Only, using XCUITest
 
@@ -272,3 +281,6 @@ Driver](/docs/en/drivers/ios-uiautomation.md).
 
 ### WinAppDriver Only
 (For WinAppDriver specific capabilities, please refer to the documentation on the [Appium Windows Driver repo](https://github.com/appium/appium-windows-driver#windowsdriver-specific-capabilities) itself.)
+
+### Flutter driver only
+(For FlutterDriver specific capabilities, examples please refer to the documentation on the [Flutter Driver repo](https://github.com/truongsinh/appium-flutter-driver#desired-capabilities-for-flutter-driver-only) itself.)
