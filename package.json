@@ -95,7 +95,11 @@
     "zip": "zip -qr appium.zip .",
     "upload": "gulp github-upload",
     "zip-and-upload": "npm run zip && npm run upload",
-    "authorize-ios": "authorize-ios"
+    "authorize-ios": "authorize-ios",
+    "clean-apptestai": "rm -rf package && rm -rf appium-apptestai-$npm_package_version",
+    "tar-apptestai": "tar -xvzf appium-$npm_package_version.tgz && mv package appium-apptestai-$npm_package_version && tar -cvzf appium-apptestai-$npm_package_version.tgz appium-apptestai-$npm_package_version",
+    "prepack": "npm run clean-apptestai && rm -f appium-apptestai-$npm_package_version.tgz && rm -f appium-$npm_package_version.tgz",
+    "postpack": "npm run tar-apptestai && npm run clean-apptestai && rm -f appium-$npm_package_version.tgz"
   },
   "pre-commit": [
     "precommit-msg",
