@@ -11,7 +11,7 @@
     "firefoxos",
     "testing"
   ],
-  "version": "1.19.0-beta.0",
+  "version": "1.22.0-beta.0",
   "author": "https://github.com/appium",
   "license": "Apache-2.0",
   "repository": {
@@ -22,13 +22,12 @@
     "url": "https://github.com/appium/appium/issues"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=6"
+    "node": ">=12",
+    "npm": ">=6.9"
   },
   "main": "./build/lib/main.js",
   "bin": {
-    "appium": "./build/lib/main.js",
-    "authorize-ios": "./node_modules/.bin/authorize-ios"
+    "appium": "./build/lib/main.js"
   },
   "directories": {
     "lib": "./lib",
@@ -46,28 +45,30 @@
     "appium-base-driver": "^7.0.0",
     "appium-espresso-driver": "^1.0.0",
     "appium-fake-driver": "^1.x",
-    "appium-flutter-driver": "^0",
+    "appium-flutter-driver": "^0.x",
+    "appium-geckodriver": "^0.x",
     "appium-ios-driver": "4.x",
     "appium-mac-driver": "1.x",
+    "appium-mac2-driver": "^0.x",
+    "appium-safari-driver": "^2.1.0",
     "appium-support": "2.x",
     "appium-tizen-driver": "^1.1.1-beta.4",
     "appium-uiautomator2-driver": "^1.37.1",
     "appium-windows-driver": "1.x",
     "appium-xcuitest-driver": "^3.27.6",
-    "appium-youiengine-driver": "^1.2.0",
+    "appium-youiengine-driver": "^1.2.8",
     "argparse": "^2.0.1",
     "async-lock": "^1.0.0",
     "asyncbox": "2.x",
-    "axios": "^0.20.0",
+    "axios": "^0.x",
     "bluebird": "3.x",
     "continuation-local-storage": "3.x",
-    "dateformat": "^3.0.3",
     "find-root": "^1.1.0",
     "lodash": "^4.17.11",
     "longjohn": "^0.2.12",
     "npmlog": "4.x",
     "semver": "^7.0.0",
-    "source-map-support": "0.x",
+    "source-map-support": "^0.x",
     "teen_process": "1.x",
     "winston": "3.x",
     "word-wrap": "^1.2.3"
@@ -94,8 +95,7 @@
     "generate-docs": "node ./build/commands-yml/parse.js",
     "zip": "zip -qr appium.zip .",
     "upload": "gulp github-upload",
-    "zip-and-upload": "npm run zip && npm run upload",
-    "authorize-ios": "authorize-ios"
+    "zip-and-upload": "npm run zip && npm run upload"
   },
   "pre-commit": [
     "precommit-msg",
@@ -109,11 +109,11 @@
     "fancy-log": "^1.3.2",
     "gulp": "^4.0.0",
     "handlebars": "^4.2.0",
-    "mocha": "^8.0.1",
+    "mocha": "^9.0.0",
     "pre-commit": "1.x",
-    "sinon": "^9.0.0",
+    "sinon": "^10.0.0",
     "validate.js": "^0.13.0",
     "wd": "^1.10.0",
-    "yaml-js": "^0.2.0"
+    "yaml-js": "^0.x"
   }
 }
