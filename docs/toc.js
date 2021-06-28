@@ -17,7 +17,10 @@ module.exports = {
       ['UIAutomator2 (Android)', 'android-uiautomator2.md'],
       ['Espresso (Android)', 'android-espresso.md'],
       ['Windows', 'windows.md'],
+      ['Safari (Mac/iOS)', 'safari.md'],
+      ['Gecko (Firefox)', 'gecko.md'],
       ['Mac', 'mac.md'],
+      ['Mac2', 'mac2.md'],
     ]],
     ['Commands', ['commands',
       ['Status', 'status.md'],
@@ -315,6 +318,7 @@ module.exports = {
       ['Appium Style Guide', 'style-guide.md'],
       ['How to Write Docs', 'how-to-write-docs.md'],
       ['Appium Package Structure', 'appium-packages.md'],
+      ['Release Appium', 'release-appium.md'],
       ['Credits', 'credits.md']]]
   ],
   cn: [
@@ -325,17 +329,17 @@ module.exports = {
       ['已支持的平台', 'platform-support.md'],
       // ['API 文档', 'api.md'],
     ]],
-    /*['驱动程序', ['drivers',
+    ['驱动程序', ['drivers',
       ['XCUITest (iOS)', 'ios-xcuitest.md'],
       ['XCUITest Real Devices (iOS)', 'ios-xcuitest-real-devices.md'],
-      ['UIAutomation (iOS)', 'ios-uiautomation.md'],
-      ['UIAutomation Safari Launcher (iOS)', 'ios-uiautomation-safari-launcher.md'],
-      ['UIAutomator (Android)', 'android-uiautomator.md'],
+      // ['UIAutomation (iOS)', 'ios-uiautomation.md'],
+      // ['UIAutomation Safari Launcher (iOS)', 'ios-uiautomation-safari-launcher.md'],
+      // ['UIAutomator (Android)', 'android-uiautomator.md'],
       ['UIAutomator2 (Android)', 'android-uiautomator2.md'],
-      ['Espresso (Android)', 'android-espresso.md'],
-      ['Windows', 'windows.md'],
-      ['Mac', 'mac.md'],
-    ]],*/
+      // ['Espresso (Android)', 'android-espresso.md'],
+      // ['Windows', 'windows.md'],
+      // ['Mac', 'mac.md'],
+    ]],
     ['编写 & 运行测试', ['writing-running-appium',
       ['运行测试', 'running-tests.md'],
       ['预期功能', 'caps.md'],
@@ -395,5 +399,14 @@ module.exports = {
       ['如何编写文档', 'how-to-write-docs.md'],
       ['Appium 包结构', 'appium-packages.md'],
       ['鸣谢', 'credits.md']]]
+  ],
+  ja: [
+    ['ホーム', 'about-appium/intro.md'],
+    ['概要', ['about-appium',
+      ['イントロ', 'intro.md'],
+      ['Appium クライアント', 'appium-clients.md'],
+      ['はじめに', 'getting-started.md'],
+      ['サポートプラットフォーム', 'platform-support.md'],
+    ]]
   ]
 };
