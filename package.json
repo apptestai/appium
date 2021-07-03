@@ -95,7 +95,8 @@
     "generate-docs": "node ./build/commands-yml/parse.js",
     "zip": "zip -qr appium.zip .",
     "upload": "gulp github-upload",
-    "zip-and-upload": "npm run zip && npm run upload"
+    "zip-and-upload": "npm run zip && npm run upload",
+    "pack": "npm pack && rm -rf tmp && mkdir tmp && tar -zxvf appium-$npm_package_version.tgz -C tmp/ && cd tmp && mv package appium-$npm_package_version && tar -zcvf appium-$npm_package_version.tgz appium-$npm_package_version && cp appium-$npm_package_version.tgz ../ && cd .. && rm -rf tmp"
   },
   "pre-commit": [
     "precommit-msg",
