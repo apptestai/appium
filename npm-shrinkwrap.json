@@ -4001,14 +4001,12 @@
       }
     },
     "appium-uiautomator2-server": {
-      "version": "4.21.1",
-      "resolved": "https://registry.npmjs.org/appium-uiautomator2-server/-/appium-uiautomator2-server-4.21.1.tgz",
-      "integrity": "sha512-gYcQFezpUS7+bWXL5/lNATWeOaCs8QqrWWOGI8QrfXrDrVXQU3xPKWOw1WxDNl6Febnd6u5+wdaaqww8c++KVQ=="
+      "version": "4.23.0",
+      "resolved": "https://github.com/apptestai/appium-uiautomator2-server/releases/download/apptestai_v4.23.0/appium-uiautomator2-server-4.23.0.tgz"
     },
     "appium-webdriveragent": {
-      "version": "3.8.0",
-      "resolved": "https://registry.npmjs.org/appium-webdriveragent/-/appium-webdriveragent-3.8.0.tgz",
-      "integrity": "sha512-AZXX6kLyu8ZBpIg+LseRzROlI1z3712+UiJRVxxztcHuAxDGedlWCFMmPGApvzJAL3tgfc5ANSRcgsDs6QdWKw==",
+      "version": "3.11.1",
+      "resolved": "https://github.com/apptestai/WebDriverAgent/releases/download/apptestai_v3.11.1/appium-webdriveragent-3.11.1.tgz",
       "requires": {
         "@babel/runtime": "^7.0.0",
         "appium-base-driver": "^7.0.0",
@@ -9138,8 +9136,7 @@
     },
     "io.appium.settings": {
       "version": "3.3.0",
-      "resolved": "https://registry.npmjs.org/io.appium.settings/-/io.appium.settings-3.3.0.tgz",
-      "integrity": "sha512-feZO8TnXtPqNeFGMqZQyl2uLkIGpNV1i9lxXOT9yes0ff6ntzAtMQqRe+5emrYhSNVgekfax7hACz/iU2xcmGg=="
+      "resolved": "https://github.com/apptestai/io.appium.settings/releases/download/apptestai_v3.3.0/io.appium.settings-3.3.0.tgz"
     },
     "ipaddr.js": {
       "version": "1.9.1",
